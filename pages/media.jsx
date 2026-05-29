@@ -2,6 +2,14 @@ function MediaPage({ setRoute }) {
   const [filter, setFilter] = React.useState('all');
   const [lightbox, setLightbox] = React.useState(null);
   const [closing, setClosing] = React.useState(false);
+  const [tiles, setTiles] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch('image_gallery.json')
+      .then(r => r.json())
+      .then(data => setTiles(data.map((t, i) => ({ ...t, id: 'm' + String(i + 1).padStart(2, '0') }))))
+      .catch(() => {});
+  }, []);
 
   React.useEffect(() => {
     if (!lightbox) return;
@@ -28,34 +36,6 @@ function MediaPage({ setRoute }) {
     setClosing(true);
     setTimeout(() => { setLightbox(null); setClosing(false); }, 180);
   };
-
-  const tiles = [
-    { id: 'm01', src: 'images/gallery/img1.jpg',   label: 'NJTS in Action',      cat: 'matches'  },
-    { id: 'm02', src: 'images/gallery/img2.jpg',   label: 'Team Play',           cat: 'matches'  },
-    { id: 'm03', src: 'images/gallery/img3.jpg',   label: 'On the Court',        cat: 'practice' },
-    { id: 'm04', src: 'images/gallery/img4.jpg',   label: 'Game Day',            cat: 'matches'  },
-    { id: 'm05', src: 'images/gallery/img5.jpg',   label: 'Team Huddle',         cat: 'teams'    },
-    { id: 'm06', src: 'images/gallery/img6.jpg',   label: 'Practice Session',    cat: 'practice' },
-    { id: 'm07', src: 'images/gallery/img7.webp',  label: 'Match Highlights',    cat: 'matches'  },
-    { id: 'm08', src: 'images/gallery/img8.webp',  label: 'Tournament Action',   cat: 'tourneys' },
-    { id: 'm09', src: 'images/gallery/img9.webp',  label: 'Drill Work',          cat: 'practice' },
-    { id: 'm10', src: 'images/gallery/img10.webp', label: 'Team Photo',          cat: 'teams'    },
-    { id: 'm11', src: 'images/gallery/img11.webp', label: 'Competitive Play',    cat: 'matches'  },
-    { id: 'm12', src: 'images/gallery/img12.webp', label: 'Tournament Day',      cat: 'tourneys' },
-    { id: 'm13', src: 'images/gallery/img13.webp', label: 'Athletes at Work',    cat: 'practice' },
-    { id: 'm14', src: 'images/gallery/img14.webp', label: 'Big Tournament',      cat: 'tourneys' },
-    { id: 'm15', src: 'images/gallery/img15.webp', label: 'Serving Drills',      cat: 'practice' },
-    { id: 'm16', src: 'images/gallery/img16.webp', label: 'Squad Goals',         cat: 'teams'    },
-    { id: 'm17', src: 'images/gallery/img17.webp', label: 'Event Day',           cat: 'events'   },
-    { id: 'm18', src: 'images/gallery/img18.webp', label: 'Block & Spike',       cat: 'matches'  },
-    { id: 'm19', src: 'images/gallery/img19.webp', label: 'Conditioning',        cat: 'practice' },
-    { id: 'm20', src: 'images/gallery/img20.webp', label: 'Team Celebration',    cat: 'events'   },
-    { id: 'm21', src: 'images/gallery/img21.webp', label: 'Match Day',           cat: 'matches'  },
-    { id: 'm22', src: 'images/gallery/img22.webp', label: 'Group Photo',         cat: 'teams'    },
-    { id: 'm23', src: 'images/gallery/img23.webp', label: 'Tournament Finals',   cat: 'tourneys' },
-    { id: 'm24', src: 'images/gallery/img24.webp', label: 'End of Season',       cat: 'events'   },
-    { id: 'm25', src: 'images/gallery/img25.webp', label: 'NJTS Family',         cat: 'teams'    },
-  ];
 
   const filters = [
     { id: 'all',      label: 'All' },
