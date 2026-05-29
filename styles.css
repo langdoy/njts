@@ -74,12 +74,12 @@ img { display: block; max-width: 100%; }
   display: inline-flex; align-items: center; gap: 10px;
   padding: 16px 28px;
   font-family: 'Archivo'; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase;
-  border: 2px solid currentColor; transition: all .2s ease;
+  border: 2px solid currentColor; border-radius: 999px; transition: all .2s ease;
 }
 .btn-sky { background: var(--sky); color: var(--navy); border-color: var(--sky); }
 .btn-sky:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
-.btn-navy { background: var(--navy); color: var(--white); border-color: var(--navy); }
-.btn-navy:hover { background: var(--sky); color: var(--navy); border-color: var(--sky); }
+.btn-navy { background: linear-gradient(135deg, #1a6fad 0%, var(--sky) 100%); color: var(--white); border-color: transparent; }
+.btn-navy:hover { background: linear-gradient(135deg, var(--sky) 0%, #1a6fad 100%); color: var(--white); border-color: transparent; }
 .btn-ghost-light { background: transparent; color: var(--white); border-color: var(--white); }
 .btn-ghost-light:hover { background: var(--white); color: var(--navy); }
 .btn-ghost-dark { background: transparent; color: var(--navy); border-color: var(--navy); }
